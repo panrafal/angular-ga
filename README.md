@@ -40,23 +40,23 @@ You can skip the enclosing array '[]' if you start with the single-quote charact
 Of course, you can use angular expressions, as this is evaluated.
 
 Both samples are equivalent to calling `ga('send', 'event', 'player', 'play', video.id)` on the `click` event:
-```
+```html
 <a href="#" ga="'send', 'event', 'player', 'play', video.id"></a>
 <a href="#" ga="['send', 'event', 'player', 'play', video.id]"></a>
 ```
 
 You can call `ga` several times by passing an array of arrays:
-```
+```html
 <a href="#" ga="[['set', 'metric1', 10], ['send', 'event', 'player', 'play', video.id]]"></a>
 ```
 
 You can change the event by providing `ga-on` attribute
-```
+```html
 <input type="text" ga="'send', 'event', 'focus'" ga-on="focus" />
 ```
 
 By using `ga-on="init"` you can call `ga` as soon as the html is parsed
-```
+```html
 <div ga="'send', 'pageview', {title: 'Hello world!'}" ga-on="init" />
 ```
 
