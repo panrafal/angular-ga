@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ga', [])
-    .factory('ga', function ($window, $rootScope, $location) {
+    .factory('ga', ['$window', '$rootScope', '$location', function ($window, $rootScope, $location) {
 
         var ga = function() {
             if (angular.isArray(arguments[0])) {
@@ -21,12 +21,12 @@ angular.module('ga', [])
 
 
         return ga;
-    })
+    }])
 
     /**
       ga="'send', 'event', 'test'" ga-on="click|hover|init"
       */
-    .directive('ga', function(ga) {
+    .directive('ga', ['ga', function(ga) {
         return {
           restrict: 'A',
           scope: false,
@@ -58,5 +58,5 @@ angular.module('ga', [])
             }
           }
         };
-      });
+      }]);
 

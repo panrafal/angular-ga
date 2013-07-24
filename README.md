@@ -18,3 +18,44 @@ Include the **new** universal analytics script in your html as usual, but remove
 angular.module('yourModule', ['ga'])
 ```
 
+## Use ga service in your controllers, directives etc...
+
+`angular-ga` service is accessible as `ga`. Use it exactly the same, as `ga()` (asynchronous function)[https://developers.google.com/analytics/devguides/collection/analyticsjs/method-reference]:
+
+```js
+angular.module('myModule')
+    .controller('myCtrl', function (ga) {
+        ga('set', 'dimension1', 'Hello!');
+        ga('send', 'pageview', {title: 'Hello world!'});
+    });
+```
+
+## Use ga directive in html
+
+Contents of the directive should be the array of parameters for `ga()` function. 
+You can skip the enclosing array '[]' if you start with the single-quote character.
+
+Of course, you can use angular expressions, as this is evaluated.
+
+Both samples are equivalent to calling `ga('send', 'event', 'player', 'play', video.id)` on the `click` event:
+```
+<a href="#" ga="'send', 'event', 'player', 'play', video.id"></a>
+<a href="#" ga="['send', 'event', 'player', 'play', video.id]"></a>
+```
+
+You can call `ga` several times by passing an array of arrays:
+```
+<a href="#" ga="[['set', 'metric1', 10], ['send', 'event', 'player', 'play', video.id]]"></a>
+```
+
+You can change the event by providing `ga-on` attribute
+```
+<input type="text" ga="'send', 'event', 'focus'" ga-on="focus" />
+```
+
+By using `ga-on="init"` you can call `ga` as soon as the html is parsed
+```
+<div ga="'send', 'pageview', {title: 'Hello world!'}" ga-on="init" />
+```
+
+## Use ga directive's auto events
