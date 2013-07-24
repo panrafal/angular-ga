@@ -1,0 +1,12 @@
+{
+  "author": "Rafal Lindemann",
+  "name": "angular-ga",
+  "description": "Google Universal Analytics adapter for AngularJS",
+  "version": "0.1.0",
+  "homepage": "http://angular-ui.github.com",
+  "main": "./ga.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
