@@ -5,10 +5,11 @@ angular.module('ga', [])
 
         var ga = function() {
             if (angular.isArray(arguments[0])) {
-                _.each(arguments, function(a) {ga.apply(this, a)});
+                for(var i = 0; i < arguments.length; ++i) {
+                    ga.apply(this, arguments[i]);
+                }
                 return;
             }
-            console.log(arguments);
             if ($window.ga) {
                 $window.ga.apply(this, arguments);
             }

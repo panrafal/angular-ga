@@ -58,44 +58,44 @@ describe('ga', function () {
         it('should call on click', function() {
             el = compileElement('<div ga="\'send\', \'event\', \'click\'"></div>')
             expect(window.ga).not.toHaveBeenCalled();
-            el.click();
+            el.triggerHandler('click');
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'click');
         })
 
         it('should call on blur', function() {
             el = compileElement('<div ga="\'send\', \'event\', \'blur\'" ga-on="blur"></div>')
             expect(window.ga).not.toHaveBeenCalled();
-            el.blur();
+            el.triggerHandler('blur');
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'blur');
         })
 
-        it('should click empty link', function() {
-            el = compileElement('<a ga>Label</a>').click()
+        it('should click button', function() {
+            el = compileElement('<div ga>Label</div>').triggerHandler('click')
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'button', 'click', 'Label');
         })
 
         it('should click # link', function() {
-            el = compileElement('<a href="#" ga>Label</a>').click()
+            el = compileElement('<a href="#" ga>Label</a>').triggerHandler('click')
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'button', 'click', 'Label');
         })
 
         it('should click anchor link', function() {
-            el = compileElement('<a href="#anchor" ga>Label</a>').click()
+            el = compileElement('<a href="#anchor" ga>Label</a>').triggerHandler('click')
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'button', '#anchor', 'Label');
         })
 
         it('should click link', function() {
-            el = compileElement('<a href="/" ga>Label</a>').click()
+            el = compileElement('<a href="/" ga>Label</a>').triggerHandler('click')
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'link-in', '/', 'Label');
         })
 
         it('should click out link', function() {
-            el = compileElement('<a href="http://www.stamina.pl/" ga><b>Label</b></a>').click()
+            el = compileElement('<a href="http://www.stamina.pl/" ga><b>Label</b></a>').triggerHandler('click')
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'link-out', 'http://www.stamina.pl/', 'Label');
         })
 
         it('should click button', function() {
-            el = compileElement('<input type="submit" value="Submit" ga />').click()
+            el = compileElement('<input type="submit" value="Submit" ga />').triggerHandler('click')
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'button', 'click', 'Submit');
         })
 
