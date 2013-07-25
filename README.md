@@ -1,5 +1,5 @@
-Google Universal Analytics adapter for AngularJS
-================================================
+Google Universal Analytics for AngularJS
+========================================
 
 `angular-ga` is a very straightforward AngularJS adapter of the 
 **new** [google analytics script](https://developers.google.com/analytics/devguides/collection/analyticsjs/). 
@@ -7,6 +7,8 @@ Google Universal Analytics adapter for AngularJS
 It gives you full control of your analytics, exposing the google's `ga()` function for you.
 What it means is, that it will set the page field on every route change for You, but you will 
 have to send the pageviews, events etc. manually. But on the other hand, you have the full control of that process.
+
+[![Build Status](https://travis-ci.org/panrafal/angular-ga.png?branch=master)](https://travis-ci.org/panrafal/angular-ga)
 
 Usage
 =====
@@ -93,4 +95,7 @@ are equivalent:
 <input type="submit" value="SUBMIT" ga />
 <input type="submit" value="SUBMIT" ga="'send', 'event', 'button', 'click', 'SUBMIT'" />
 ```
+
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/1b31cde4eb48524cf5194d3c2bf1ef68 "githalytics.com")](http://githalytics.com/panrafal/angular-ga)
 
