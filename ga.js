@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ga', [])
-    .factory('ga', ['$window', '$rootScope', '$location', function ($window, $rootScope, $location) {
+    .factory('ga', ['$window', function ($window) {
 
         var ga = function() {
             if (angular.isArray(arguments[0])) {
@@ -15,14 +15,15 @@ angular.module('ga', [])
             }
         }
 
+        return ga;
+    }])
+    .run(['$rootScope', '$location', 'ga', function ($rootScope, $location, ga) {
+       
         $rootScope.$on('$routeChangeStart', function() {
             ga('set', 'page', $location.url());
         });
 
-
-        return ga;
     }])
-
     /**
       ga="'send', 'event', 'test'" ga-on="click|hover|init"
       */
