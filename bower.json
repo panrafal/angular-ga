@@ -6,7 +6,9 @@
   "homepage": "https://github.com/panrafal/angular-ga",
   "main": "./ga.js",
   "dependencies": {
+    "angular": "^1.0"
   },
-  "devDependencies": {
+   "devDependencies": {
+    "angular-mocks": "^1.0"
   }
 }
