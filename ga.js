@@ -1,3 +1,4 @@
+(function (angular) {
 'use strict';
 
 angular.module('ga', [])
@@ -60,4 +61,5 @@ angular.module('ga', [])
           }
         };
       }]);
+})(angular);
 

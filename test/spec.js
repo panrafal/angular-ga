@@ -1,7 +1,6 @@
-'use strict';
-
 describe('ga', function () {
-
+    'use strict';
+    
     // load the service's module
     beforeEach(module('ga'));
 
