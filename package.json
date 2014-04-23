@@ -1,7 +1,7 @@
 {
   "name": "angular-ga",
   "description": "Google Universal Analytics adapter for AngularJS",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Rafal Lindemann <rl@stamina.pl>",
   "main": "ga.js",
   "repository": {
