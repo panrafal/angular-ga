@@ -104,7 +104,7 @@ describe('ga', function () {
         })
 
         it('should have special attributes', function() {
-            el = compileElement('<a href="#" title="Title" ga ga-category="cat" ga-action="act" ga-label="lab" ga-value="1">Label</a>').triggerHandler('click')
+            el = compileElement('<a href="#" title="Title" ga ga-category="\'cat\'" ga-action="\'act\'" ga-label="\'lab\'" ga-value="1">Label</a>').triggerHandler('click')
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'cat', 'act', 'lab', 1);
         })
 

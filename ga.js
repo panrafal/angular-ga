@@ -11,7 +11,7 @@ angular.module('ga', [])
                 }
                 return;
             }
-            console.log('ga', arguments);
+            // console.log('ga', arguments);
             if ($window.ga) {
                 $window.ga.apply(this, arguments);
             }
@@ -52,8 +52,9 @@ angular.module('ga', [])
                             (href ? href : 'click'),
                         label = $attrs.gaLabel ? $scope.$eval($attrs.gaLabel) : 
                             ($element[0].title || ($element[0].tagName.match(/input/i) ? $element.attr('value') : $element.text())).substr(0, 64),
-                        value = $attrs.gaValue ? $scope.$eval($attrs.gaValue) : 0;
-                    command = ['send', 'event', category, action, label, value];
+                        value = $attrs.gaValue ? $scope.$eval($attrs.gaValue) : null;
+                    command = ['send', 'event', category, action, label];
+                    if (value !== null) command.push(value);
                 }
                 ga.apply(null, command);
             };
