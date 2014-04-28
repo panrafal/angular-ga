@@ -83,6 +83,11 @@ describe('ga', function () {
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'button', '#anchor', 'Label');
         })
 
+        it('should have title', function() {
+            el = compileElement('<a href="#anchor" title="Title" ga>Label</a>').triggerHandler('click')
+            expect(window.ga).toHaveBeenCalledWith('send', 'event', 'button', '#anchor', 'Title');
+        })
+
         it('should click link', function() {
             el = compileElement('<a href="/" ga>Label</a>').triggerHandler('click')
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'link-in', '/', 'Label');
@@ -97,6 +102,13 @@ describe('ga', function () {
             el = compileElement('<input type="submit" value="Submit" ga />').triggerHandler('click')
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'button', 'click', 'Submit');
         })
+
+        it('should have special attributes', function() {
+            el = compileElement('<a href="#" title="Title" ga ga-category="cat" ga-action="act" ga-label="lab" ga-value="1">Label</a>').triggerHandler('click')
+            expect(window.ga).toHaveBeenCalledWith('send', 'event', 'cat', 'act', 'lab', 1);
+        })
+
+
 
     });
 

@@ -11,10 +11,11 @@ angular.module('ga', [])
                 }
                 return;
             }
+            console.log('ga', arguments);
             if ($window.ga) {
                 $window.ga.apply(this, arguments);
             }
-        }
+        };
 
         return ga;
     }])
@@ -45,13 +46,17 @@ angular.module('ga', [])
                     // auto command
                     var href = $element.attr('href');
                     if (href && href === '#') href = '';
-                    var category = href && href[0] !== '#' ? (href.match(/\/\//) ? 'link-out' : 'link-in') : 'button',
-                        action = href ? href : 'click',
-                        label = ($element[0].tagName.match(/input/i) ? $element.attr('value') : $element.text()).substr(0, 64);
-                    command = ['send', 'event', category, action, label];
+                    var category = $attrs.gaCategory ? $scope.$eval($attrs.gaCategory) : 
+                            (href && href[0] !== '#' ? (href.match(/\/\//) ? 'link-out' : 'link-in') : 'button'),
+                        action = $attrs.gaAction ? $scope.$eval($attrs.gaAction) : 
+                            (href ? href : 'click'),
+                        label = $attrs.gaLabel ? $scope.$eval($attrs.gaLabel) : 
+                            ($element[0].title || ($element[0].tagName.match(/input/i) ? $element.attr('value') : $element.text())).substr(0, 64),
+                        value = $attrs.gaValue ? $scope.$eval($attrs.gaValue) : 0;
+                    command = ['send', 'event', category, action, label, value];
                 }
                 ga.apply(null, command);
-            }
+            };
 
             if (bindToEvent === 'init') {
                 onEvent();

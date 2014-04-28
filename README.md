@@ -69,38 +69,28 @@ By using `ga-on="init"` you can call `ga` as soon as the html is parsed:
 
 ## Use ga directive's auto events
 
-If `ga` attribute is empty, the event is guesses from the context. Following examples
-are equivalent:
+If `ga` attribute is empty, the event is guesses from the context as follows:
 
-```html
-<div ga>LABEL</div>
-<div ga="'send', 'event', 'button', 'click', 'LABEL'">LABEL</div>
-```
+**category**
 
-```html
-<a href="#" ga>LABEL</a>
-<a href="#" ga="'send', 'event', 'button', 'click', 'LABEL'">LABEL</a>
-```
+- `link-out` if href begins with `http://`
+- `link-in` if href is anything else, except `#`
+- `button` for anything else
 
-```html
-<a href="#anchor" ga>LABEL</a>
-<a href="#anchor" ga="'send', 'event', 'button', '#anchor', 'LABEL'">LABEL</a>
-```
+**action**
 
-```html
-<a href="/" ga>LABEL</a>
-<a href="/" ga="'send', 'event', 'link-in', '/', 'LABEL'">LABEL</a>
-```
+- value of `href` attribute if present
+- `click` for anything else
 
-```html
-<a href="https://github.com/panrafal/angular-ga" ga>LABEL</a>
-<a href="https://github.com/panrafal/angular-ga" ga="'send', 'event', 'link-out', 'https://github.com/panrafal/angular-ga', 'LABEL'">LABEL</a>
-```
+**label**
 
-```html
-<input type="submit" value="SUBMIT" ga />
-<input type="submit" value="SUBMIT" ga="'send', 'event', 'button', 'click', 'SUBMIT'" />
-```
+- value of `title` attribute if present
+- for `input` elements value of `value` attribute if present
+- text contents for anything else
+
+You can use attributes `ga-category`, `ga-action`, `ga-label` and `ga-value` to override
+default behaviour.
+
 
 
 [![githalytics.com alpha](https://cruel-carlota.pagodabox.com/1b31cde4eb48524cf5194d3c2bf1ef68 "githalytics.com")](http://githalytics.com/panrafal/angular-ga)
