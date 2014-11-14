@@ -14,7 +14,7 @@ describe('ga', function () {
         spyOn(window, 'ga').andCallThrough();
 
         compileElement = function(html) {
-            return $compile(angular.element(html))($rootScope);
+            return $compile(angular.element(html))($rootScope.$new());
         }
 
     }));
@@ -68,6 +68,16 @@ describe('ga', function () {
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'blur');
         })
 
+        it('should handle repeated events', function() {
+            el = compileElement('<div ga="\'send\', \'event\', testValue"></div>')
+            el.scope().testValue = 'click1';
+            el.triggerHandler('click');
+            expect(window.ga).toHaveBeenCalledWith('send', 'event', 'click1');
+            el.scope().testValue = 'click2';
+            el.triggerHandler('click');
+            expect(window.ga).toHaveBeenCalledWith('send', 'event', 'click2');
+        })
+
         it('should click button', function() {
             el = compileElement('<div ga>Label</div>').triggerHandler('click')
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'button', 'click', 'Label');
@@ -107,6 +117,7 @@ describe('ga', function () {
             el = compileElement('<a href="#" title="Title" ga ga-category="\'cat\'" ga-action="\'act\'" ga-label="\'lab\'" ga-value="1">Label</a>').triggerHandler('click')
             expect(window.ga).toHaveBeenCalledWith('send', 'event', 'cat', 'act', 'lab', 1);
         })
+
 
 
 

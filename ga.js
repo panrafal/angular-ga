@@ -34,10 +34,10 @@ angular.module('ga', [])
           restrict: 'A',
           scope: false,
           link: function($scope, $element, $attrs) {
-            var bindToEvent = $attrs.gaOn || 'click',
-                command = $attrs.ga;
+            var bindToEvent = $attrs.gaOn || 'click';
 
             var onEvent = function() {
+                var command = $attrs.ga;
                 if (command) {
                     if (command[0] === '\'') command = '[' + command + ']';
 
