@@ -11,7 +11,7 @@ describe('ga', function () {
         window = $window;
         window.gaCalled = false;
         window.ga = function() {window.gaCalled = arguments;}
-        spyOn(window, 'ga').andCallThrough();
+        spyOn(window, 'ga').and.callThrough();
 
         compileElement = function(html) {
             return $compile(angular.element(html))($rootScope.$new());
@@ -29,7 +29,7 @@ describe('ga', function () {
 
         it('should pass multiple params', function () {
             ga([['set', 'page', '/'], ['send', 'pageview']]);
-            expect(window.ga.calls[0].args).toEqual(['set', 'page', '/'])
+            expect(window.ga.calls.first().args).toEqual(['set', 'page', '/'])
             expect(window.ga).toHaveBeenCalledWith('send', 'pageview')
         });
 
